@@ -44,7 +44,7 @@ public class QueueDynamicArray<T> implements Iterable<T> {
 			rear = 0;
 		// (front + 1) % queueOfItems.length == rear is equal to size == queueOfItems.length
 		else if(size() == queueOfItems.length)
-			queueOfItems = resize(queueOfItems, queueOfItems.length << 1); // queueOfItems.length * 2
+			queueOfItems = resize(queueOfItems.length << 1); // queueOfItems.length * 2
 		queueOfItems[++front] = data;
 		size++;
 	}
@@ -62,7 +62,7 @@ public class QueueDynamicArray<T> implements Iterable<T> {
 		int threshold = 100;
 		// resizing if size is capacity / 4 and size is greater than threshold 
 		if(size() == queueOfItems.length >>> 2 && queueOfItems.length > threshold) // queueOfItems.length / 4
-			queueOfItems = resize(queueOfItems, queueOfItems.length >>> 1);// queueOfItems.length / 2
+			queueOfItems = resize(queueOfItems.length >>> 1);// queueOfItems.length / 2
 		size--;
 		return result;
 	}
@@ -92,7 +92,7 @@ public class QueueDynamicArray<T> implements Iterable<T> {
 	}
 
 	
-	private T[] resize(T[] queueOfItems, int newCapacity) {
+	private T[] resize(int newCapacity) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		T[] tempQueueOfItems = (T[]) new Object[newCapacity];

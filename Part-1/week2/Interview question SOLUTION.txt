@@ -1,0 +1,10 @@
+Week 2 - Interview questions
+
+
+1). For enqueue, push to the stack1. For dequeue, if stack 2 is empty push everything from stack 1 to stack 2. Else pop from stack 2.
+
+
+2). Take two stacks, use stack1 for push and pop like a normal stack, and stack2 for max. Push if the top is smaller than or equal to the new element i.e. pushed, and pop if the top is equal to the popped element from stack1.
+
+
+3). It's because Java's arrays (unlike generics) contain, at runtime, information about its component type. So you must know the component type when you create the array. Since you don't know what T is at runtime, you can't create the array.  

@@ -1,0 +1,10 @@
+Week 1 - Interview questions
+
+
+1). Take an array of size n (representing members). use weighted quick union-find + path compression algorithm to union to connect members at each log. Also, check after each log if the size of the root is equal to n. If so everyone is a friend of each other.
+
+
+2). We can employ an array that contains a max element in connected components. This way It makes find method in O(1) operation.
+
+
+3). Take 2 arrays one representing successors say s other parents say p. one more to keep track if the node exists or is deleted i.e. boolean type say exists. when an element e is removed put s[p[e]] = s[e] and p[s[e]] = p[e]. and mark exists[e] = false. Delete in O(1). Successor can be found in O(1) using exists(e) && s[e].
