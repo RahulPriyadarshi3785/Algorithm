@@ -5,7 +5,13 @@ This folder contains:
 4). QueueDynamicArray.java - Better
 5). QueueLinkedList.java
 6). Interview question Solution.txt
-6). Queues - Final assignment week 2
+7). Queues - Final assignment week 2
+8). Convex hull problem
+9). Selection sort, insertion sort - Elementary sort example
+10). Fisher Yates Randomization Algorithm (Knuth Shuffling)
+11). Shell Sorting
+12). Shell Sort increment sequence - java and python
+13). Elementary Sorting interview quetsions Solution 
 
 See the Assessment Guide for information on how to interpret this report.
 

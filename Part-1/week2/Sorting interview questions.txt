@@ -1,0 +1,9 @@
+1).
+Sort both of the arrays on basis of x & y respectively. Take a count variable.  If x is smaller skip that, if x is the same compare y and now if y is smaller skip. If y is the same increment count and move forward.
+
+2).
+Sort both arrays if they are the same then one is the permutation of others.
+
+
+3).
+Take 3 points i = -1, j = length of array and current = 0. While current color is not white, If current color is red swap(++i,current), else if current color is blue swap(current,--j). Move current to next iteration. Do this step till current is not equal to j.
