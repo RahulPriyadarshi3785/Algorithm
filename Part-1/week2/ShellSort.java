@@ -9,10 +9,10 @@ public class ShellSort<T> {
 	
 	//Knuth's function for shell sort
 	//0(n^3/2) in practice much better
-	public static List<Long> shellSortIncrementSeqFunction(int length) {
-		List<Long> res = new ArrayList<>();
+	public static List<Integer> shellSortIncrementSeqFunction(int length) {
+		List<Integer> res = new ArrayList<>();
 		for(int i = 0; i < length; i++)
-				res.add((long)(3 * i + 1));
+				res.add(3 * i + 1);
 		return res;
 	}
 	
@@ -50,13 +50,13 @@ public class ShellSort<T> {
 
 	@SuppressWarnings("unchecked")
 	private boolean less(Comparable<T> thisComparable, Comparable<T> thatComparable) {
-		if(!Comparable.class.isAssignableFrom(thisComparable.getClass()))
-			throw new IllegalArgumentException();
+//		if(!Comparable.class.isAssignableFrom(thisComparable.getClass()))
+//			throw new IllegalArgumentException();
 		return thisComparable.compareTo((T) thatComparable) < 0;
 	}
 	
-	private void exchange(Comparable<T>[] comparableArray, int thisIndex, int thatIndex) {
-		Comparable<T> temp = comparableArray[thisIndex];
+	private void exchange(Object[] comparableArray, int thisIndex, int thatIndex) {
+		Object temp = comparableArray[thisIndex];
 		comparableArray[thisIndex] = comparableArray[thatIndex];
 		comparableArray[thatIndex] = temp;
 	}
@@ -69,31 +69,38 @@ public class ShellSort<T> {
 		return res;
 	}
 	
-	public Comparable<T>[] shellSort(Comparable<T>[] comparableArray) {
+	public void shellSort(Comparable<T>[] comparableArray) {
 		int len = comparableArray.length;
 		List<Integer> incrementSequence = shellSortIncrementSeqFunctionGood(len);
-		int h = incrementSequence.size() - 1;
-		for(int i = h; i >= 0; i--)
-			for(int j = incrementSequence.get(i); j < len; j++)
-				for(int k = j; k >= incrementSequence.get(i) && less(comparableArray[k], comparableArray[k-incrementSequence.get(i)]); k -= incrementSequence.get(i))
-					exchange(comparableArray, k, k-incrementSequence.get(i));
-		return comparableArray;
+		int seqLen = incrementSequence.size() - 1;
+		for(int i = seqLen; i >= 0; i--) {
+			int step = incrementSequence.get(i);
+			//h-sorting the array
+			for(int j = step; j < len; j++)
+				for(int k = j; k >= step && less(comparableArray[k], comparableArray[k-step]); k -= step)
+					exchange(comparableArray, k, k-step);
+		}
+		assert isSorted(comparableArray);
 	}
 	
+	private void show(Comparable<T>[] comparableArray) {
+		Arrays.stream(comparableArray).forEach(x -> System.out.print(x + ", "));
+		System.out.println();
+	} 
+	
 	public static void main(String[] args) {
-		ShellSort<Integer> s = new ShellSort<Integer>();
+		ShellSort<Integer> s = new ShellSort<>();
 		s.shellSortIncrementSeqFunctionGood(2162).forEach(x -> System.out.print(x + " -> "));
 		Integer[] test1 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,14,14,14,14,14,14,21};
 		System.out.println();
 		System.out.println(s.isSorted(test1));
-		Arrays.stream(s.shellSort(test1)).forEach(x -> System.out.print(x + ", "));
-		System.out.println();
+		s.shellSort(test1);
+		s.show(test1);
 		Integer[] test2 = {1,2,3,43,5,6,17,87,9,10,101,12,13,14,14,154,14,194,154,14,21,0};
 		System.out.println(s.isSorted(test2));
-		Arrays.stream(test2).forEach(x -> System.out.print(x + ", "));
-		System.out.println();
-		Arrays.stream(s.shellSort(test2)).forEach(x -> System.out.print(x + ", "));
-		System.out.println();
+		s.show(test2);
+		s.shellSort(test2);
+		s.show(test2);
 	}
 
 }
